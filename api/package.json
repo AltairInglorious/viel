@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "lint": "bunx biome check --write ./src",
+    "dev": "bun --watch ./src/index.ts",
+    "start": "bun ./src/index.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "^1.2.0",
+    "drizzle-kit": "^0.30.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.38.4",
+    "hono": "^4.6.18"
+  }
+}
