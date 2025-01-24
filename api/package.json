@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@libsql/client": "^0.14.0",
     "@types/bun": "^1.2.0",
     "drizzle-kit": "^0.30.2"
   },
