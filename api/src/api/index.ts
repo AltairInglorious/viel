@@ -1,5 +1,6 @@
 import { Hono } from "hono";
+import { usersRouter } from "./users";
 
 export const api = new Hono();
 
-api.get("/", async (c) => c.text("Hello, Bun!"));
+api.route("/users", usersRouter);

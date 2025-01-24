@@ -1,10 +1,28 @@
 import { foreignKey, int, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { nanoid } from "nanoid";
 
 export const users = sqliteTable("users", {
 	id: int().primaryKey(),
 	name: text().notNull(),
 	login: text().notNull().unique(),
 	password: text().notNull(),
+
+	createdAt: int({ mode: "timestamp" })
+		.notNull()
+		.$defaultFn(() => new Date()),
+});
+
+export const sessions = sqliteTable("sessions", {
+	id: int().primaryKey(),
+	userId: int()
+		.notNull()
+		.references(() => users.id, {
+			onDelete: "cascade",
+			onUpdate: "cascade",
+		}),
+	token: text()
+		.notNull()
+		.$defaultFn(() => nanoid()),
 
 	createdAt: int({ mode: "timestamp" })
 		.notNull()
