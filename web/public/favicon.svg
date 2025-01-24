@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512.00001"
+   version="1.2"
+   id="svg19"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.3.1 (9b9bdc1480, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview19"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.97265748"
+     inkscape:cx="341.3329"
+     inkscape:cy="340.81885"
+     inkscape:window-width="2558"
+     inkscape:window-height="1048"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg19"
+     showguides="false" />
+  <title
+     id="title1">Qt SVG Document</title>
+  <desc
+     id="desc1">Generated with Qt</desc>
+  <defs
+     id="defs1" />
+  <g
+     id="g1"
+     inkscape:label="logo"
+     transform="translate(0.95647594,-2.5804877)"
+     inkscape:transform-center-x="-5.3172625"
+     inkscape:transform-center-y="39.401557">
+    <path
+       style="fill:#ff0000;stroke-width:1.02811"
+       d="m 220.8504,255.63838 c -65.98265,-38.27701 -120.18094,-69.81592 -120.44064,-70.08647 -0.478095,-0.49806 44.82562,-26.96799 47.10831,-27.52431 0.68044,-0.16583 44.57569,24.50935 97.54499,54.83374 l 96.30782,55.13524 43.93276,-25.21133 c 24.16302,-13.86624 44.68692,-25.49976 45.60866,-25.85228 1.08811,-0.41614 9.56178,4.12348 24.16061,12.94363 12.36659,7.47151 23.02385,14.09248 23.68279,14.71327 0.88631,0.83499 -16.72103,11.42871 -67.66383,40.71097 -37.87405,21.77026 -69.17941,39.661 -69.56746,39.75719 -0.38806,0.0962 -54.69136,-31.14264 -120.67401,-69.41965 z"
+       id="path19"
+       transform="scale(0.75000092)" />
+    <path
+       style="fill:#ff0000;stroke-width:1.02811"
+       d="m 355.97718,429.5975 0.26333,-79.83158 117.71873,-68.25997 c 64.7453,-37.54299 118.99101,-68.94624 120.54603,-69.785 l 2.82731,-1.52502 -0.0226,28.04243 -0.0226,28.04243 -96.61984,55.90597 -96.61983,55.90597 -0.008,52.0457 -0.008,52.0457 -23.5742,13.62247 c -12.96582,7.49236 -23.83711,13.62248 -24.15843,13.62248 -0.32132,0 -0.46572,-35.92421 -0.32089,-79.83158 z"
+       id="path20"
+       transform="scale(0.75000092)" />
+    <path
+       style="fill:#ff0000;stroke-width:1.02811"
+       d="M 302.52171,614.58639 278.61812,600.72557 V 489.38262 378.03969 l -45.23689,-25.91162 -45.23689,-25.91162 v -28.76654 -28.76655 l 3.34136,2.04453 c 1.83775,1.12449 32.71881,19.22788 68.62459,40.22976 35.90578,21.00187 65.6327,38.53471 66.05985,38.96186 0.42715,0.42715 0.6593,63.27062 0.51589,139.65216 l -0.26074,138.87554 z"
+       id="path21"
+       transform="scale(0.75000092)" />
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Qt SVG Document</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
