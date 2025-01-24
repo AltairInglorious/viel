@@ -4,8 +4,9 @@ import { z } from "zod";
 import { db } from "../db";
 import { sessions, users } from "../db/schema";
 import { eq } from "drizzle-orm";
+import type { ApiContext } from ".";
 
-export const usersRouter = new Hono();
+export const usersRouter = new Hono<ApiContext>();
 
 usersRouter.post(
 	"/login",
@@ -45,3 +46,17 @@ usersRouter.post(
 		return c.json({ token: `${session[0].id}:${session[0].token}` });
 	},
 );
+
+usersRouter.get("/me", async (c) => {
+	const user = c.get("user");
+	if (!user) {
+		c.status(401);
+		return c.json({ error: "Unauthorized" });
+	}
+	return c.json({
+		id: user.id,
+		name: user.name,
+		login: user.login,
+		createdAt: user.createdAt,
+	});
+});

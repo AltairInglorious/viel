@@ -1,6 +1,16 @@
 import { Hono } from "hono";
 import { usersRouter } from "./users";
+import type { users } from "../db/schema";
+import { auth } from "./middlewares/auth";
 
-export const api = new Hono();
+export type ApiContext = {
+	Variables: {
+		user?: typeof users.$inferSelect;
+	};
+};
+
+export const api = new Hono<ApiContext>();
+
+api.use(auth);
 
 api.route("/users", usersRouter);
