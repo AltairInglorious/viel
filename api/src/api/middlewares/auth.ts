@@ -36,3 +36,23 @@ export const isAuth = createMiddleware<ApiContext>(async (c, next) => {
 	}
 	await next();
 });
+
+export const isAdmin = createMiddleware<ApiContext>(async (c, next) => {
+	const user = c.get("user");
+	if (user && user.role === "admin") {
+		await next();
+	} else {
+		c.status(403);
+		return c.json({ error: "Forbidden" });
+	}
+});
+
+export const isMember = createMiddleware<ApiContext>(async (c, next) => {
+	const user = c.get("user");
+	if (user && (user.role === "member" || user.role === "admin")) {
+		await next();
+	} else {
+		c.status(403);
+		return c.json({ error: "Forbidden" });
+	}
+});
