@@ -1,8 +1,8 @@
 import type React from "react";
 import { useState } from "react";
 
-import eye from "../assets/eye.svg";
 import eyeOff from "../assets/eye-off.svg";
+import eye from "../assets/eye.svg";
 
 function PasswordInput({
 	children,

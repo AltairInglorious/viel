@@ -1,11 +1,17 @@
-import PasswordInput from "~/components/PasswordInput";
-import type { Route } from "./+types/login";
 import { Form, redirect } from "react-router";
 import { z } from "zod";
+import PasswordInput from "~/components/PasswordInput";
 import { session } from "~/cookies.server";
+import type { Route } from "./+types/login";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
 	return [{ title: "Viel" }];
+}
+
+export async function loader({ request }: Route.LoaderArgs) {
+	const cookieHeader = request.headers.get("Cookie");
+	const cookie = await session.parse(cookieHeader);
+	if (cookie) return redirect("/dashboard");
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -39,7 +45,7 @@ export async function action({ request }: Route.ActionArgs) {
 		}
 
 		const resBody = await res.json();
-		return redirect("/", {
+		return redirect("/dashboard", {
 			headers: {
 				"Set-Cookie": await session.serialize(resBody.token),
 			},

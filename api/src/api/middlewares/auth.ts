@@ -14,6 +14,7 @@ export const auth = createMiddleware<ApiContext>(async (c, next) => {
 				.from(sessions)
 				.where(eq(sessions.id, Number(tokenData[1])));
 			if (session.length === 1 && session[0].token === tokenData[2]) {
+				c.set("session", session[0]);
 				const user = await db
 					.select()
 					.from(users)

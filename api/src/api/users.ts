@@ -43,9 +43,21 @@ usersRouter.post(
 			return c.json({ error: "Failed to create session" });
 		}
 
+		c.status(200);
 		return c.json({ token: `${session[0].id}:${session[0].token}` });
 	},
 );
+
+usersRouter.post("/logout", async (c) => {
+	const session = c.get("session");
+	if (!session) {
+		c.status(401);
+		return c.json({ error: "Unauthorized" });
+	}
+	await db.delete(sessions).where(eq(sessions.id, session.id));
+	c.status(200);
+	return c.json({ message: "Logged out" });
+});
 
 usersRouter.get("/me", async (c) => {
 	const user = c.get("user");

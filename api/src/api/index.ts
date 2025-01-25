@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 import { usersRouter } from "./users";
-import type { users } from "../db/schema";
+import type { sessions, users } from "../db/schema";
 import { auth } from "./middlewares/auth";
 
 export type ApiContext = {
 	Variables: {
+		session?: typeof sessions.$inferSelect;
 		user?: typeof users.$inferSelect;
 	};
 };
