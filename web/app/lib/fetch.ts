@@ -20,6 +20,23 @@ export async function fetchMe(token: string): Promise<UserData> {
 	return res.json();
 }
 
+export async function fetchUser(
+	token: string,
+	id: number,
+): Promise<UserData | null> {
+	const url = new URL(process.env.API_URL ?? "");
+	url.pathname = `/users/${id}`;
+
+	const res = await fetch(url, {
+		method: "GET",
+		headers: {
+			Authorization: token,
+		},
+	});
+	if (res.status === 404) return null;
+	return res.json();
+}
+
 export async function logout(token: string): Promise<void> {
 	const url = new URL(process.env.API_URL ?? "");
 	url.pathname = "/users/logout";

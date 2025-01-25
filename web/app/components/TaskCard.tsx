@@ -1,15 +1,27 @@
-import type { Task } from "~/lib/fetch";
+import type { Task, UserData } from "~/lib/fetch";
 
 type Props = {
 	task: Task;
+	owner?: UserData;
+	assignTo?: UserData;
 };
 
-function TaskCard({ task }: Props) {
+function TaskCard({ task, owner, assignTo }: Props) {
 	return (
 		<div className="card card-bordered shadow-md">
 			<div className="card-body">
 				<h2 className="card-title justify-center text-center">{task.title}</h2>
 				{task.description && <p>{task.description}</p>}
+				<div className="flex items-center justify-between">
+					<span>Owner</span>
+					<span>{owner?.name || "Unknown"}</span>
+				</div>
+				{task.assignTo && (
+					<div className="flex items-center justify-between">
+						<span>Assign to</span>
+						<span>{assignTo?.name || "Unknown"}</span>
+					</div>
+				)}
 				<div className="text-sm text-neutral-500 flex items-center justify-between">
 					<span>Created at</span>
 					<span>

@@ -2,6 +2,7 @@ import {
 	type RouteConfig,
 	index,
 	layout,
+	prefix,
 	route,
 } from "@react-router/dev/routes";
 

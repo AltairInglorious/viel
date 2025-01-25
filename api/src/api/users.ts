@@ -5,6 +5,7 @@ import { db } from "../db";
 import { sessions, users } from "../db/schema";
 import { eq } from "drizzle-orm";
 import type { ApiContext } from ".";
+import { isAuth } from "./middlewares/auth";
 
 export const usersRouter = new Hono<ApiContext>();
 
@@ -72,3 +73,25 @@ usersRouter.get("/me", async (c) => {
 		createdAt: user.createdAt,
 	});
 });
+
+usersRouter.get(
+	"/:id",
+	isAuth,
+	zValidator("param", z.object({ id: z.coerce.number().int().nonnegative() })),
+	async (c) => {
+		const { id } = c.req.valid("param");
+
+		const user = await db.select().from(users).where(eq(users.id, id));
+		if (user.length === 0) {
+			c.status(404);
+			return c.json({ error: "User not found" });
+		}
+
+		return c.json({
+			id: user[0].id,
+			name: user[0].name,
+			login: user[0].login,
+			createdAt: user[0].createdAt,
+		});
+	},
+);
