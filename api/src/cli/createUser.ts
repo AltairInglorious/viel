@@ -11,7 +11,8 @@ if (
 	!confirm(`Are you sure you want to create a new user with the following details?
 Name: ${name}
 Login: ${login}
-Password: ${password}`)
+Password: ${password}
+Role: ${isAdmin ? "Admin" : "Member"}`)
 ) {
 	console.log("User creation cancelled.");
 	process.exit(0);
