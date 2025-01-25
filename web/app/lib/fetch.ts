@@ -1,6 +1,3 @@
-if (!process.env.API_URL)
-	throw new Error("API_URL environment variable not set");
-
 export type UserData = {
 	id: number;
 	name: string;
@@ -61,9 +58,15 @@ export type Task = {
 	updatedAt: string;
 };
 
-export async function fetchTasks(token: string): Promise<Task[]> {
+export async function fetchTasks(
+	token: string,
+	opts: {
+		project?: number;
+	} = {},
+): Promise<Task[]> {
 	const url = new URL(process.env.API_URL ?? "");
 	url.pathname = "/tasks";
+	if (opts.project) url.searchParams.set("project", opts.project.toString());
 
 	const res = await fetch(url, {
 		method: "GET",
@@ -92,5 +95,22 @@ export async function fetchProjects(token: string): Promise<Project[]> {
 			Authorization: token,
 		},
 	});
+	return res.json();
+}
+
+export async function fetchProject(
+	token: string,
+	id: number,
+): Promise<Project | null> {
+	const url = new URL(process.env.API_URL ?? "");
+	url.pathname = `/projects/${id}`;
+
+	const res = await fetch(url, {
+		method: "GET",
+		headers: {
+			Authorization: token,
+		},
+	});
+	if (res.status === 404) return null;
 	return res.json();
 }

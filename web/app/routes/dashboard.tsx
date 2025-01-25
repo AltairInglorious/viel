@@ -1,14 +1,8 @@
 import { redirect } from "react-router";
-import TaskCard from "~/components/TaskCard";
-import { session } from "~/cookies.server";
-import {
-	type UserData,
-	fetchProjects,
-	fetchTasks,
-	fetchUser,
-} from "~/lib/fetch";
-import type { Route } from "./+types/dashboard";
 import ProjectCard from "~/components/ProjectCard";
+import { session } from "~/cookies.server";
+import { type UserData, fetchProjects, fetchUser } from "~/lib/fetch";
+import type { Route } from "./+types/dashboard";
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookieHeader = request.headers.get("Cookie");
@@ -43,7 +37,7 @@ function Dashboard({ loaderData }: Route.ComponentProps) {
 			<header>
 				<h1 className="my-4 font-bold text-3xl text-center">Projects list</h1>
 			</header>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 				{loaderData.projects.map((p) => (
 					<ProjectCard
 						key={p.id}

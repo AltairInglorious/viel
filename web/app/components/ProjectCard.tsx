@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router";
+import { Link, useOutletContext } from "react-router";
 import type { LayoutContext } from "~/layouts/Layout";
 import type { Project, UserData } from "~/lib/fetch";
 
@@ -33,9 +33,9 @@ function ProjectCard({ project, owner }: Props) {
 					</span>
 				</div>
 				<div className="card-actions justify-end">
-					<button type="button" className="btn">
+					<Link to={`/dashboard/projects/${project.id}`} className="btn">
 						Open
-					</button>
+					</Link>
 				</div>
 			</div>
 		</div>
