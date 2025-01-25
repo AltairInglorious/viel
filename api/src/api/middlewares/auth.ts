@@ -1,8 +1,8 @@
+import { eq } from "drizzle-orm";
 import { createMiddleware } from "hono/factory";
 import type { ApiContext } from "..";
 import { db } from "../../db";
 import { sessions, users } from "../../db/schema";
-import { eq } from "drizzle-orm";
 
 export const auth = createMiddleware<ApiContext>(async (c, next) => {
 	const authHeader = c.req.header("Authorization");

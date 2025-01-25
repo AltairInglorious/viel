@@ -1,7 +1,7 @@
-import { session } from "~/cookies.server";
 import { redirect } from "react-router";
-import type { Route } from "./+types/logout";
+import { session } from "~/cookies.server";
 import { logout } from "~/lib/fetch";
+import type { Route } from "./+types/logout";
 
 export async function loader({ request }: Route.LoaderArgs) {
 	try {

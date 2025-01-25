@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import type { ApiContext } from ".";
-import { isAuth } from "./middlewares/auth";
-import { tasks } from "../db/schema";
 import { db } from "../db";
+import { tasks } from "../db/schema";
+import { isAuth } from "./middlewares/auth";
 
 export const tasksRouter = new Hono<ApiContext>();
 

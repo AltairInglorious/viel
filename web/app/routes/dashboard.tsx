@@ -1,8 +1,8 @@
 import { redirect } from "react-router";
-import type { Route } from "./+types/dashboard";
-import { session } from "~/cookies.server";
-import { fetchTasks, fetchUser, type UserData } from "~/lib/fetch";
 import TaskCard from "~/components/TaskCard";
+import { session } from "~/cookies.server";
+import { type UserData, fetchTasks, fetchUser } from "~/lib/fetch";
+import type { Route } from "./+types/dashboard";
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookieHeader = request.headers.get("Cookie");

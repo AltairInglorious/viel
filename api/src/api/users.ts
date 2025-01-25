@@ -1,10 +1,10 @@
 import { zValidator } from "@hono/zod-validator";
+import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { z } from "zod";
+import type { ApiContext } from ".";
 import { db } from "../db";
 import { sessions, users } from "../db/schema";
-import { eq } from "drizzle-orm";
-import type { ApiContext } from ".";
 import { isAuth } from "./middlewares/auth";
 
 export const usersRouter = new Hono<ApiContext>();
