@@ -1,25 +1,20 @@
 import { redirect } from "react-router";
 import TaskCard from "~/components/TaskCard";
 import { session } from "~/cookies.server";
-import {
-	type UserData,
-	fetchProjects,
-	fetchTasks,
-	fetchUser,
-} from "~/lib/fetch";
+import { type UserData, fetchTasks, fetchUser } from "~/lib/fetch";
 import type { Route } from "./+types/dashboard";
-import ProjectCard from "~/components/ProjectCard";
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const cookieHeader = request.headers.get("Cookie");
 	const cookie = await session.parse(cookieHeader);
 	if (!cookie) return redirect("/");
 
-	const projects = await fetchProjects(cookie);
+	const tasks = await fetchTasks(cookie);
 
 	const userIds = new Set<number>();
-	for (const task of projects) {
+	for (const task of tasks) {
 		userIds.add(task.owner);
+		if (task.assignTo) userIds.add(task.assignTo);
 	}
 
 	const users = new Map<number, UserData>();
@@ -34,24 +29,20 @@ export async function loader({ request }: Route.LoaderArgs) {
 		}),
 	);
 
-	return { projects, users };
+	return { tasks, users };
 }
 
 function Dashboard({ loaderData }: Route.ComponentProps) {
 	return (
-		<main className="container mx-auto">
-			<header>
-				<h1 className="my-4 font-bold text-3xl text-center">Projects list</h1>
-			</header>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-				{loaderData.projects.map((p) => (
-					<ProjectCard
-						key={p.id}
-						project={p}
-						owner={loaderData.users.get(p.owner)}
-					/>
-				))}
-			</div>
+		<main className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+			{loaderData.projects.map((t) => (
+				<TaskCard
+					key={t.id}
+					task={t}
+					owner={loaderData.users.get(t.owner)}
+					assignTo={t.assignTo ? loaderData.users.get(t.assignTo) : undefined}
+				/>
+			))}
 		</main>
 	);
 }

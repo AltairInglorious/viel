@@ -73,3 +73,24 @@ export async function fetchTasks(token: string): Promise<Task[]> {
 	});
 	return res.json();
 }
+
+export type Project = {
+	id: number;
+	title: string;
+	description: string | null;
+	owner: number;
+	createdAt: string;
+};
+
+export async function fetchProjects(token: string): Promise<Project[]> {
+	const url = new URL(process.env.API_URL ?? "");
+	url.pathname = "/projects";
+
+	const res = await fetch(url, {
+		method: "GET",
+		headers: {
+			Authorization: token,
+		},
+	});
+	return res.json();
+}
