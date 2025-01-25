@@ -1,4 +1,6 @@
-import type { Project, Task, UserData } from "~/lib/fetch";
+import { useOutletContext } from "react-router";
+import type { LayoutContext } from "~/layouts/Layout";
+import type { Project, UserData } from "~/lib/fetch";
 
 type Props = {
 	project: Project;
@@ -6,6 +8,8 @@ type Props = {
 };
 
 function ProjectCard({ project, owner }: Props) {
+	const { me } = useOutletContext<LayoutContext>();
+
 	return (
 		<div className="card card-bordered shadow-md">
 			<div className="card-body">
@@ -15,7 +19,9 @@ function ProjectCard({ project, owner }: Props) {
 				{project.description && <p>{project.description}</p>}
 				<div className="flex items-center justify-between">
 					<span>Owner</span>
-					<span>{owner?.name || "Unknown"}</span>
+					<span className={project.owner === me.id ? "text-green-500" : ""}>
+						{owner?.name || "Unknown"}
+					</span>
 				</div>
 				<div className="text-sm text-neutral-500 flex items-center justify-between">
 					<span>Created at</span>

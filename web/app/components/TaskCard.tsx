@@ -1,3 +1,5 @@
+import { useOutletContext } from "react-router";
+import type { LayoutContext } from "~/layouts/Layout";
 import type { Task, UserData } from "~/lib/fetch";
 
 type Props = {
@@ -7,6 +9,8 @@ type Props = {
 };
 
 function TaskCard({ task, owner, assignTo }: Props) {
+	const { me } = useOutletContext<LayoutContext>();
+
 	return (
 		<div className="card card-bordered shadow-md">
 			<div className="card-body">
@@ -14,12 +18,16 @@ function TaskCard({ task, owner, assignTo }: Props) {
 				{task.description && <p>{task.description}</p>}
 				<div className="flex items-center justify-between">
 					<span>Owner</span>
-					<span>{owner?.name || "Unknown"}</span>
+					<span className={task.owner === me.id ? "text-green-500" : ""}>
+						{owner?.name || "Unknown"}
+					</span>
 				</div>
 				{task.assignTo && (
 					<div className="flex items-center justify-between">
 						<span>Assign to</span>
-						<span>{assignTo?.name || "Unknown"}</span>
+						<span className={task.assignTo === me.id ? "text-green-500" : ""}>
+							{assignTo?.name || "Unknown"}
+						</span>
 					</div>
 				)}
 				<div className="text-sm text-neutral-500 flex items-center justify-between">
