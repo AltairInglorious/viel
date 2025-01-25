@@ -70,6 +70,7 @@ usersRouter.get("/me", async (c) => {
 		id: user.id,
 		name: user.name,
 		login: user.login,
+		role: user.role,
 		createdAt: user.createdAt,
 	});
 });
@@ -91,6 +92,7 @@ usersRouter.get(
 			id: user[0].id,
 			name: user[0].name,
 			login: user[0].login,
+			role: user[0].role,
 			createdAt: user[0].createdAt,
 		});
 	},

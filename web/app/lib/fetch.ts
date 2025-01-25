@@ -1,7 +1,9 @@
+export type UserRole = "member" | "admin";
 export type UserData = {
 	id: number;
 	name: string;
 	login: string;
+	role: UserRole;
 	createdAt: string;
 };
 export async function fetchMe(token: string): Promise<UserData> {
