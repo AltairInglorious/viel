@@ -28,3 +28,11 @@ export const auth = createMiddleware<ApiContext>(async (c, next) => {
 
 	await next();
 });
+
+export const isAuth = createMiddleware<ApiContext>(async (c, next) => {
+	if (!c.get("session") || !c.get("user")) {
+		c.status(401);
+		return c.json({ error: "Unauthorized" });
+	}
+	await next();
+});

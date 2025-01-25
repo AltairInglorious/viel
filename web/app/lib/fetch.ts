@@ -31,3 +31,28 @@ export async function logout(token: string): Promise<void> {
 		},
 	});
 }
+
+export type Task = {
+	id: number;
+	title: string;
+	description: string | null;
+	completed: boolean;
+	owner: number;
+	assignTo: number | null;
+	parentTask: number | null;
+	createdAt: string;
+	updatedAt: string;
+};
+
+export async function fetchTasks(token: string): Promise<Task[]> {
+	const url = new URL(process.env.API_URL ?? "");
+	url.pathname = "/tasks";
+
+	const res = await fetch(url, {
+		method: "GET",
+		headers: {
+			Authorization: token,
+		},
+	});
+	return res.json();
+}
