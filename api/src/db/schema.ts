@@ -71,7 +71,9 @@ export const tasks = sqliteTable(
 		id: int().primaryKey(),
 		title: text().notNull(),
 		description: text(),
-		completed: int({ mode: "boolean" }).notNull().default(false),
+		status: text({ enum: ["todo", "in-work", "complete"] })
+			.notNull()
+			.default("todo"),
 
 		owner: int()
 			.notNull()

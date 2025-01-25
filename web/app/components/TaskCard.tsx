@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router";
 import type { LayoutContext } from "~/layouts/Layout";
-import type { Task, UserData } from "~/lib/fetch";
+import type { Task, TaskStatus, UserData } from "~/lib/fetch";
 
 type Props = {
 	task: Task;
@@ -34,6 +34,12 @@ function TaskCard({ task, owner, assignTo }: Props) {
 						</div>
 					)}
 					<div className="flex items-center justify-between">
+						<span>Status</span>
+						<span className={TaskColorMap[task.status]}>
+							{TaskLabelMap[task.status]}
+						</span>
+					</div>
+					<div className="flex items-center justify-between">
 						<span>Created at</span>
 						<span>
 							{Intl.DateTimeFormat("ru", {
@@ -61,5 +67,17 @@ function TaskCard({ task, owner, assignTo }: Props) {
 		</div>
 	);
 }
+
+const TaskColorMap: Record<TaskStatus, string> = {
+	todo: "text-yellow-500",
+	"in-work": "text-blue-500",
+	complete: "text-green-500",
+};
+
+const TaskLabelMap: Record<TaskStatus, string> = {
+	todo: "TODO",
+	"in-work": "In work",
+	complete: "Complete",
+};
 
 export default TaskCard;

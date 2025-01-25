@@ -46,11 +46,12 @@ export async function logout(token: string): Promise<void> {
 	});
 }
 
+export type TaskStatus = "todo" | "in-work" | "complete";
 export type Task = {
 	id: number;
 	title: string;
 	description: string | null;
-	completed: boolean;
+	status: TaskStatus;
 	owner: number;
 	assignTo: number | null;
 	parentTask: number | null;
