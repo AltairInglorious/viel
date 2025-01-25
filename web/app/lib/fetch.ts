@@ -8,7 +8,7 @@ export type UserData = {
 };
 export async function fetchMe(token: string): Promise<UserData> {
 	const url = new URL(process.env.API_URL ?? "");
-	url.pathname = "/users/me";
+	url.pathname = "/api/users/me";
 
 	const res = await fetch(url, {
 		method: "GET",
@@ -24,7 +24,7 @@ export async function fetchUser(
 	id: number,
 ): Promise<UserData | null> {
 	const url = new URL(process.env.API_URL ?? "");
-	url.pathname = `/users/${id}`;
+	url.pathname = `/api/users/${id}`;
 
 	const res = await fetch(url, {
 		method: "GET",
@@ -38,7 +38,7 @@ export async function fetchUser(
 
 export async function logout(token: string): Promise<void> {
 	const url = new URL(process.env.API_URL ?? "");
-	url.pathname = "/users/logout";
+	url.pathname = "/api/users/logout";
 
 	await fetch(url, {
 		method: "POST",
@@ -68,7 +68,7 @@ export async function fetchTasks(
 	} = {},
 ): Promise<Task[]> {
 	const url = new URL(process.env.API_URL ?? "");
-	url.pathname = "/tasks";
+	url.pathname = "/api/tasks";
 	if (opts.project) url.searchParams.set("project", opts.project.toString());
 
 	const res = await fetch(url, {
@@ -90,7 +90,7 @@ export type Project = {
 
 export async function fetchProjects(token: string): Promise<Project[]> {
 	const url = new URL(process.env.API_URL ?? "");
-	url.pathname = "/projects";
+	url.pathname = "/api/projects";
 
 	const res = await fetch(url, {
 		method: "GET",
@@ -106,7 +106,7 @@ export async function fetchProject(
 	id: number,
 ): Promise<Project | null> {
 	const url = new URL(process.env.API_URL ?? "");
-	url.pathname = `/projects/${id}`;
+	url.pathname = `/api/projects/${id}`;
 
 	const res = await fetch(url, {
 		method: "GET",

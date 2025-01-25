@@ -28,7 +28,7 @@ export async function action({ request }: Route.ActionArgs) {
 			});
 
 		const url = new URL(process.env.API_URL ?? "");
-		url.pathname = "/users/login";
+		url.pathname = "/api/users/login";
 		const res = await fetch(url, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -87,8 +87,9 @@ export default function Login({ actionData }: Route.ComponentProps) {
 					name="login"
 					placeholder="Login"
 					className="input input-bordered"
+					required
 				/>
-				<PasswordInput name="password" placeholder="Password" />
+				<PasswordInput name="password" placeholder="Password" required />
 				<button type="submit" className="btn">
 					Sign in
 				</button>

@@ -17,9 +17,7 @@ function NavBar({ me }: Props) {
 				</Link>
 			</div>
 			<div className="navbar-end flex items-center gap-1">
-				<span>
-					Hello, {me.name} [{me.role}]
-				</span>
+				<span>Hello, {me.name}</span>
 				<Link to="/dashboard" className="btn btn-ghost btn-circle">
 					<img alt="Settings" src={settings} className="h-5 w-5" />
 				</Link>

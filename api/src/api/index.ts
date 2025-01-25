@@ -19,7 +19,7 @@ export type ApiAuthContext = {
 	};
 };
 
-export const api = new Hono<ApiContext>();
+export const api = new Hono<ApiContext>().basePath("/api");
 
 api.use(auth);
 

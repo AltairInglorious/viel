@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import type { ApiAuthContext } from ".";
 import { db } from "../db";
 import { projects, projectUsers, users } from "../db/schema";
-import { isAuth } from "./middlewares/auth";
+import { isAdmin, isAuth } from "./middlewares/auth";
 import { eq } from "drizzle-orm";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
@@ -54,6 +54,36 @@ projectsRouter.get(
 			}
 		}
 
+		return c.json(project[0]);
+	},
+);
+
+projectsRouter.post(
+	"/",
+	isAdmin,
+	zValidator(
+		"json",
+		z.object({ title: z.string().min(1), description: z.string().optional() }),
+	),
+	async (c) => {
+		const data = c.req.valid("json");
+		const user = c.get("user");
+
+		const project = await db
+			.insert(projects)
+			.values({
+				title: data.title,
+				description: data.description,
+				owner: user.id,
+			})
+			.returning();
+
+		if (project.length === 0) {
+			c.status(500);
+			return c.json({ error: "Failed to create project" });
+		}
+
+		c.status(201);
 		return c.json(project[0]);
 	},
 );
