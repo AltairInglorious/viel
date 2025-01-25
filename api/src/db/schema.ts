@@ -29,6 +29,38 @@ export const sessions = sqliteTable("sessions", {
 		.$defaultFn(() => new Date()),
 });
 
+export const projects = sqliteTable("projects", {
+	id: int().primaryKey(),
+	title: text().notNull(),
+	description: text(),
+
+	owner: int()
+		.notNull()
+		.references(() => users.id, {
+			onDelete: "restrict",
+			onUpdate: "cascade",
+		}),
+
+	createdAt: int({ mode: "timestamp" })
+		.notNull()
+		.$defaultFn(() => new Date()),
+});
+
+export const projectUsers = sqliteTable("projectUsers", {
+	projectId: int()
+		.notNull()
+		.references(() => projects.id, {
+			onDelete: "cascade",
+			onUpdate: "cascade",
+		}),
+	userId: int()
+		.notNull()
+		.references(() => users.id, {
+			onDelete: "cascade",
+			onUpdate: "cascade",
+		}),
+});
+
 export const tasks = sqliteTable(
 	"tasks",
 	{
@@ -48,6 +80,12 @@ export const tasks = sqliteTable(
 			onUpdate: "cascade",
 		}),
 		parentTask: int(),
+		project: int()
+			.notNull()
+			.references(() => projects.id, {
+				onDelete: "cascade",
+				onUpdate: "cascade",
+			}),
 
 		createdAt: int({ mode: "timestamp" })
 			.notNull()
