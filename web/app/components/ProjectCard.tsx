@@ -17,20 +17,22 @@ function ProjectCard({ project, owner }: Props) {
 					{project.title}
 				</h2>
 				{project.description && <p>{project.description}</p>}
-				<div className="flex items-center justify-between">
-					<span>Owner</span>
-					<span className={project.owner === me.id ? "text-green-500" : ""}>
-						{owner?.name || "Unknown"}
-					</span>
-				</div>
-				<div className="text-sm text-neutral-500 flex items-center justify-between">
-					<span>Created at</span>
-					<span>
-						{Intl.DateTimeFormat("ru", {
-							dateStyle: "short",
-							timeStyle: "medium",
-						}).format(new Date(project.createdAt))}
-					</span>
+				<div className="flex flex-col text-sm text-neutral-500">
+					<div className="flex items-center justify-between">
+						<span>Owner</span>
+						<span className={project.owner === me.id ? "text-green-500" : ""}>
+							{owner?.name || "Unknown"}
+						</span>
+					</div>
+					<div className="flex items-center justify-between">
+						<span>Created at</span>
+						<span>
+							{Intl.DateTimeFormat("ru", {
+								dateStyle: "short",
+								timeStyle: "medium",
+							}).format(new Date(project.createdAt))}
+						</span>
+					</div>
 				</div>
 				<div className="card-actions justify-end">
 					<Link to={`/dashboard/projects/${project.id}`} className="btn">

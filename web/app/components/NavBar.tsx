@@ -10,7 +10,7 @@ type Props = {
 
 function NavBar({ me }: Props) {
 	return (
-		<header className="navbar bg-base-100">
+		<header className="navbar bg-slate-100">
 			<div className="flex-1">
 				<Link to="/dashboard" className="btn btn-ghost text-xl">
 					Viel
